@@ -1,0 +1,7 @@
+# KaRAKuLE — Hüsnü Atik
+# YAYIN ADRESİ: kendi alan adınla güncelle (sitemap.xml + index.html canonical ile aynı olmalı).
+
+User-agent: *
+Allow: /
+
+Sitemap: https://husnuatik.github.io/husnuatik/sitemap.xml

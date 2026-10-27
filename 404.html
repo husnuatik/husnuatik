@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#0d0d0b">
+  <title>404 — KaRAKuLE</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0}
+    body{min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(16px,2.6vw,40px);background:#0d0d0b;color:#ebe6da;font-family:Archivo,system-ui,sans-serif}
+    .m{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.04em;color:#8a877d}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:16px}
+    h1{font-size:clamp(120px,34vw,560px);line-height:.8;font-weight:800;font-variation-settings:"wdth" 62}
+    h1 span{color:#ff4d17}
+    a{color:#ebe6da;font-size:clamp(20px,2.4vw,32px);border-bottom:2px solid #ff4d17;text-decoration:none;align-self:flex-start}
+    p{font-size:clamp(18px,2vw,26px);max-width:30ch;margin-bottom:20px}
+    .lang{display:flex;gap:6px}
+    .lang button{font:inherit;font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#8a877d;background:none;border:1px solid #2a2a26;padding:3px 7px;cursor:pointer}
+    .lang button[aria-pressed="true"]{color:#0d0d0b;background:#ebe6da;border-color:#ebe6da}
+  </style>
+</head>
+<body>
+  <div class="top">
+    <span class="m" id="kicker">KRKL — Error / 404</span>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="tr" aria-pressed="false">TR</button>
+    </div>
+  </div>
+  <h1>4<span>0</span>4</h1>
+  <div>
+    <p id="msg">The tower cannot see this coordinate. The page has moved, or it never existed.</p>
+    <a href="./" id="back">Return to the tower →</a>
+  </div>
+
+  <script>
+    (function () {
+      var COPY = {
+        en: {
+          title: "404 — KaRAKuLE",
+          kicker: "KRKL — Error / 404",
+          msg: "The tower cannot see this coordinate. The page has moved, or it never existed.",
+          back: "Return to the tower →"
+        },
+        tr: {
+          title: "404 — KaRAKuLE",
+          kicker: "KRKL — Hata / 404",
+          msg: "Kule bu koordinatı göremiyor. Sayfa taşınmış ya da hiç var olmamış.",
+          back: "Kuleye dön →"
+        }
+      };
+
+      function stored() {
+        try {
+          var q = new URLSearchParams(location.search).get("lang");
+          var l = q || localStorage.getItem("krkl-lang");
+          return l === "tr" ? "tr" : "en";
+        } catch (e) { return "en"; }
+      }
+
+      function apply(lang) {
+        var c = COPY[lang] || COPY.en;
+        document.documentElement.lang = lang;
+        document.title = c.title;
+        document.getElementById("kicker").textContent = c.kicker;
+        document.getElementById("msg").textContent = c.msg;
+        document.getElementById("back").textContent = c.back;
+        var buttons = document.querySelectorAll(".lang button");
+        for (var i = 0; i < buttons.length; i++) {
+          buttons[i].setAttribute("aria-pressed", String(buttons[i].dataset.lang === lang));
+        }
+      }
+
+      apply(stored());
+
+      document.querySelector(".lang").addEventListener("click", function (e) {
+        var b = e.target.closest("button[data-lang]");
+        if (!b) return;
+        try { localStorage.setItem("krkl-lang", b.dataset.lang); } catch (err) { /* yoksay */ }
+        apply(b.dataset.lang);
+      });
+    })();
+  </script>
+</body>
+</html>

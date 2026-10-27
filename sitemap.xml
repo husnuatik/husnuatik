@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- YAYIN ADRESİ: kendi alan adınla güncelle (index.html canonical + robots.txt ile aynı olmalı). -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://husnuatik.github.io/husnuatik/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://husnuatik.github.io/husnuatik/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://husnuatik.github.io/husnuatik/?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://husnuatik.github.io/husnuatik/"/>
+  </url>
+</urlset>
